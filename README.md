@@ -16,3 +16,6 @@ En este ejemplo el programa creará en el directorio donde se ejecute, archivos 
 
 java -jar xsd-downloader.jar /home/pablo/git/netsuite-connector/src/main/resources/netsuite.wsdl netsuite
 mv netsuite.xsd netsuite.wsdl
+
+
+Thanks Everit! - https://www.everit.biz/web/guest/blog/-/blogs/downloading-wsdl-files-for-offline-use
