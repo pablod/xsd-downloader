@@ -6,7 +6,22 @@
     <version>1.0</version>
     <modelVersion>4.0.0</modelVersion>
     <name>XSD Downloader</name>
-
+<build>
+<plugins>
+<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>hu.everit.utils.xsd.downloader.XsdDownloader</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+</plugins>
+</build>
     <scm>
         <connection>scm:git:git://github.com:pablod/xsd-downloader.git
         </connection>
