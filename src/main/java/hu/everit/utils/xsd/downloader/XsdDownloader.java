@@ -173,7 +173,6 @@ public class XsdDownloader
                 {
                     System.out.println("WSDL Found");
                     String schLoc = childElement.getAttribute("location");
-					System.out.println("Schema needed " + schLoc);
 
                     if (!fileNamesByprocessedUrls.containsKey(schLoc))
                     {
