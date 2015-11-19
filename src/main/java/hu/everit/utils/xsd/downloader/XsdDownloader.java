@@ -120,6 +120,8 @@ public class XsdDownloader
         outputFileName = outputFileName + ".xsd";
         fileNamesByprocessedUrls.put(xsdUrl, outputFileName);
 
+		System.out.println("Download " + xsdUrl);
+
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setNamespaceAware(true);
         DocumentBuilder db = dbf.newDocumentBuilder();
@@ -146,10 +148,11 @@ public class XsdDownloader
             {
                 Element childElement = (Element) childNode;
                 if ("http://www.w3.org/2001/XMLSchema".equals(childElement.getNamespaceURI())
-                    && childElement.getLocalName().equals("import"))
+                    && (childElement.getLocalName().equals("import") || childElement.getLocalName().equals("include")))
                 {
                     System.out.println("New Element Found");
                     String schLoc = childElement.getAttribute("schemaLocation");
+
                     if (!fileNamesByprocessedUrls.containsKey(schLoc))
                     {
                         downloadXsdRecurse(schLoc);
@@ -166,10 +169,12 @@ public class XsdDownloader
                     }
                 }
                 else if ("http://schemas.xmlsoap.org/wsdl/".equals(childElement.getNamespaceURI())
-                         && childElement.getLocalName().equals("import"))
+                         && (childElement.getLocalName().equals("import") || childElement.getLocalName().equals("include")))
                 {
                     System.out.println("WSDL Found");
                     String schLoc = childElement.getAttribute("location");
+					System.out.println("Schema needed " + schLoc);
+
                     if (!fileNamesByprocessedUrls.containsKey(schLoc))
                     {
                         downloadXsdRecurse(schLoc);
